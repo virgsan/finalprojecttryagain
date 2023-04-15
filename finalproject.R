@@ -77,6 +77,7 @@ profit_price <- mean(subset(merged, profit_status == "Profit")$price)
 table1 <- data.frame(Profit_Status = c("Non-Profit", "Profit"),
                      Average_Price = c(non_profit_price, profit_price))
 colnames(table1) <- c("Profit Status", "Average Price")
+table1 <- table1 %>% mutate_at(vars(2), ~ round(., 2))
 table1
 
 #table2
@@ -124,8 +125,6 @@ ggpairs(data_subset,
         lower = list(continuous = wrap("smooth", method = "lm")), 
         diag = list(continuous = wrap("density", alpha = 0.7)),
         title = "Correlation Matrix of Hospital Prices, Beds and Operating Expenses")
-
-
 
 
 
